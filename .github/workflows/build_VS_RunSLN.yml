@@ -15,4 +15,6 @@ jobs:
 
     - name: Build
       working-directory: build
-      run: msbuild.exe HelloWorld.sln
+      run: |
+        "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\MSBuild.exe" HelloWorld.sln
+      shell: cmd
