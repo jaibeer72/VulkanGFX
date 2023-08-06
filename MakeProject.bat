@@ -5,7 +5,7 @@ if not exist build mkdir build
 cd build
 
 REM Generate the Visual Studio solution
-cmake -G "Visual Studio" ..
+cmake -G "Visual Studio 17 2022" ..
 
 echo Visual Studio solution generated in the build directory.
 pause
