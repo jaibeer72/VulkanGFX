@@ -17,10 +17,6 @@ jobs:
       uses: microsoft/setup-msbuild@v1.1
 
     - name: List directory contents
-      run: dir
+      run: pwd dir
       working-directory: build
       shell: cmd
-
-    - name: Build
-      working-directory: build
-      run: msbuild.exe Cross-Platform-VulkanGFX.sln
