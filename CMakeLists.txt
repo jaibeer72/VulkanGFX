@@ -8,7 +8,7 @@ project(Cross-Platform-VulkanGFX)
 file(GLOB_RECURSE SOURCES "Source/*.cpp" "Source/*.h" "Source/*.hpp")
 
 # Add executable
-add_executable(HelloWorld ${SOURCES})
+add_executable(Cross-Platform-VulkanGFX ${SOURCES})
 
 # Set C++ standard
-set_property(TARGET HelloWorld PROPERTY CXX_STANDARD 11)
+set_property(TARGET Cross-Platform-VulkanGFX PROPERTY CXX_STANDARD 11)
