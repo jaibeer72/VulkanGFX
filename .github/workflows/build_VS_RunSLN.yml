@@ -1,0 +1,18 @@
+name: Build on Windows
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Run MakeProject.bat
+      run: .\MakeProject.bat
+
+    - name: Build
+      working-directory: build
+      run: msbuild.exe HelloWorld.sln
