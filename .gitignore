@@ -1,0 +1,161 @@
+# ----------------------------------
+# General build artifacts & binaries
+# ----------------------------------
+build/
+*.o
+*.a
+*.lo
+*.la
+*.so
+*.dll
+*.dylib
+*.exe
+*.out
+*.app
+*.lib
+*.exp
+*.pdb
+*.ilk
+*.map
+*.obj
+*.d
+*.ipdb
+*.iobj
+
+# --------------
+# Visual Studio
+# --------------
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# VS Code directories
+.vscode/
+.vscode-workspace/
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# Visual Studio for Mac
+.vscode/
+.vscode-workspace/
+*.suo
+*.ntvslo
+*.njsproj
+*.opendb
+*.opensdf
+*.sln.ide/
+
+# Rider
+.idea/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Uncomment if you have tasks that create the project's static files in wwwroot
+#wwwroot/
+
+# TFS 2012 Local Workspace
+$tf/
+
+# Guidence Automation Toolkit
+*.gpState
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# JetBrains Rider
+.idea/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# --------------
+# Xcode 
+# --------------
+# Xcode
+##
+build/
+DerivedData/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+*.xccheckout
+*.moved-aside
+*.xcscmblueprint
+*.xcrecentdatasource
+
+# CocoaPods
+##
+# Pods/
+
+# Carthage
+##
+Carthage/
+*.xcscmblueprint
+
+# Fastlane
+##
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# Code Injection
+##
+*.app/InjectionIII
+
+# AppCode
+##
+.idea/
+
+# Sourcery
+##
+*.generated.swift
+
+# ----------------------------------
+# Miscellaneous
+# ----------------------------------
+# OS X noise
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
