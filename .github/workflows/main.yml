@@ -1,0 +1,23 @@
+name: macOS Build
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: macOS-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set execute permissions on script
+      run: chmod +x MakeProject.sh
+
+    - name: Run MakeProject.sh
+      run: ./MakeProject.sh
+
+    # If you have any build steps after running the script, add them here.
+    # For example, if MakeProject.sh generates a Makefile:
+    - name: Build
+      working-directory: build
+      run: make
