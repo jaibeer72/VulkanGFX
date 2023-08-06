@@ -16,3 +16,8 @@ jobs:
     - name: Run MakeProject.sh
       run: ./MakeProject.sh
 
+    - name: Build with Xcode
+      run: xcodebuild -project Cross-Platform-VulkanGFX.xcodeproj -alltargets
+      working-directory: build
+
+

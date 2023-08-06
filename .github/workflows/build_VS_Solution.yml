@@ -22,3 +22,8 @@ jobs:
         dir 
       working-directory: build
       shell: cmd
+
+    - name: Build with Visual Studio
+      run: msbuild Cross-Platform-VulkanGFX.sln /p:Configuration=Release /p:Platform=x64
+      working-directory: build
+      shell: cmd
