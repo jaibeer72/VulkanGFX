@@ -16,8 +16,3 @@ jobs:
     - name: Run MakeProject.sh
       run: ./MakeProject.sh
 
-    # If you have any build steps after running the script, add them here.
-    # For example, if MakeProject.sh generates a Makefile:
-    - name: Build
-      working-directory: build
-      run: make
