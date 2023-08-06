@@ -17,6 +17,8 @@ jobs:
       uses: microsoft/setup-msbuild@v1.1
 
     - name: List directory contents
-      run: pwd dir
+      run: | 
+        pwd
+        dir 
       working-directory: build
       shell: cmd
