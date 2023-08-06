@@ -16,6 +16,11 @@ jobs:
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v1.1
 
+    - name: List directory contents
+      run: dir
+      working-directory: build
+      shell: cmd
+
     - name: Build
       working-directory: build
       run: msbuild HelloWorld.sln
