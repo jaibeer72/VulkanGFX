@@ -21,14 +21,27 @@ fi
 # run conan install
 # working commands to make the 
 conan install . -s build_type=Debug -c tools.cmake.cmaketoolchain:generator=Xcode --output-folder=ProjectFolder --build missing
+if [ $? -ne 0 ]; then
+    echo "Conan install failed!"
+    exit 1
+fi
 
 # move  to build directory
 cd ProjectFolder
+
+if [ $? -ne 0 ]; then
+    echo "Failed to change directory to ProjectFolder!"
+    exit 1
+fi
 
 # or cmake -B ../ProjectFiles -DCMAKE_TOOLCHAIN_FILE=./build/conan_toolchain.cmake -G Xcode ..
 
 # Generate the Xcode project
 cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -G Xcode 
+if [ $? -ne 0 ]; then
+    echo "CMake project generation failed!"
+    exit 1
+fi
 #cmake -G "Xcode" ..
 
 echo "Xcode project generated in the build directory."
