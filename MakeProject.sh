@@ -19,6 +19,11 @@ cd build
 # fi
 
 # run conan install
+# working commands to make the 
+# conan install . -s build_type=Debug -c tools.cmake.cmaketoolchain:generator=Xcode --output-folder=build
+
+# cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -G Xcode
+# or cmake -B ../ProjectFiles -DCMAKE_TOOLCHAIN_FILE=./build/conan_toolchain.cmake -G Xcode ..
 
 # Generate the Xcode project
 cmake -G "Xcode" ..
