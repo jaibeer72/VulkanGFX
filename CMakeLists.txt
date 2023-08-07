@@ -4,8 +4,13 @@ cmake_minimum_required(VERSION 3.5)
 # Set the project name
 project(Cross-Platform-VulkanGFX)
 
+
 # Get all the source files
 file(GLOB_RECURSE SOURCES "Source/*.cpp" "Source/*.h" "Source/*.hpp")
+
+# Set the include directories via conan dependencies
+include(${CMAKE_BINARY_DIR}/conan_toolchain.cmake)
+
 
 # Add executable
 add_executable(Cross-Platform-VulkanGFX ${SOURCES})
