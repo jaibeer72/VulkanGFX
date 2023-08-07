@@ -22,7 +22,6 @@ fi
 # working commands to make the 
 
 conan profile detect
-conan profile update settings.compiler.libcxx=libstdc++11 default
 
 conan install . -s build_type=Debug -c tools.cmake.cmaketoolchain:generator=Xcode --output-folder=ProjectFolder --build missing
 if [ $? -ne 0 ]; then
