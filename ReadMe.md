@@ -13,3 +13,9 @@
 ## Expternal Dependencies 
 - Cmake 
 - Conan 
+
+
+# MacOsBuild
+
+![Mac OS Xcode File gen and Build exe](https://github.com/jaibeer72/VulkanGFX/actions/workflows/build_Xcode_Proj.yml/badge.svg)
+![Windows VS17(2022) SLN gen and Build exe](https://github.com/jaibeer72/VulkanGFX/actions/workflows/build_Xcode_Proj.yml/badge.svg)
