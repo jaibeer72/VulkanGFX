@@ -17,8 +17,7 @@ include(${CMAKE_BINARY_DIR}/conan_toolchain.cmake)
 # Find the required packages
 find_package(Vulkan REQUIRED)
 find_package(glm REQUIRED)
-
-
+find_package(glfw3 REQUIRED)
 
 
 # Add executable
@@ -28,6 +27,12 @@ add_executable(Cross-Platform-VulkanGFX ${SOURCES})
 set_property(TARGET Cross-Platform-VulkanGFX PROPERTY CXX_STANDARD 11)
 
 # # Link Conan libraries
- target_link_libraries(${PROJECT_NAME} PRIVATE Vulkan::Vulkan)
+ target_link_libraries(${PROJECT_NAME} PRIVATE Vulkan::Vulkan glm::glm glfw)
  target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_11)
-# target_link_libraries(${PROJECT_NAME} glm::glm)
+
+ # Set the include directories
+ include_directories(
+    ${VULKAN_INCLUDE_DIR}
+    ${GLFW_INCLUDE_DIR}
+    ${GLM_INCLUDE_DIR}
+)

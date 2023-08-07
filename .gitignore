@@ -1,6 +1,7 @@
 # ----------------------------------
 # General build artifacts & binaries
 # ----------------------------------
+ProjectFolder/
 build/
 *.o
 *.a

@@ -7,7 +7,8 @@ class YourProjectConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     requires = [
         "vulkan-loader/1.3.204.1",     # Replace with the version you need.
-        "glm/cci.20230113"     # Replace with the version you need.
+        "glm/cci.20230113"  ,   # Replace with the version you need.
+        "glfw/3.3.8"
     ]
     generators = "CMakeDeps", "CMakeToolchain"
 
@@ -15,3 +16,6 @@ class YourProjectConan(ConanFile):
         cmake = CMake(self)
         cmake.configure()
         cmake.build()
+        
+    def package_info(self):
+        self.cpp_info.includedirs = ["include", "other_include"]
