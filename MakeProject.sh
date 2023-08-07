@@ -20,6 +20,8 @@ fi
 
 # run conan install
 # working commands to make the 
+conan profile new default --detect 
+
 conan install . -s build_type=Debug -c tools.cmake.cmaketoolchain:generator=Xcode --output-folder=ProjectFolder --build missing
 if [ $? -ne 0 ]; then
     echo "Conan install failed!"
