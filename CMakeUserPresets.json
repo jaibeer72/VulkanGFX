@@ -1,0 +1,9 @@
+{
+    "version": 4,
+    "vendor": {
+        "conan": {}
+    },
+    "include": [
+        "/Users/jaibeerdugal/Documents/PersonalProject/VulkanGFX/build/CMakePresets.json"
+    ]
+}
