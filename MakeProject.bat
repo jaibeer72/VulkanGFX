@@ -20,7 +20,7 @@ if %ERRORLEVEL% neq 0 (
 )
 
 REM Run conan install command
-conan install . -s build_type=Debug --output-folder=ProjectFolder --build missing
+conan install . --output-folder=ProjectFolder --build missing
 if %ERRORLEVEL% neq 0 (
     echo Conan install failed.
     exit /b %ERRORLEVEL%
