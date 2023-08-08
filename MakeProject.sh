@@ -32,6 +32,8 @@ fi
 # move  to build directory
 cd ProjectFolder
 
+source conanbuild.sh
+
 if [ $? -ne 0 ]; then
     echo "Failed to change directory to ProjectFolder!"
     exit 1
