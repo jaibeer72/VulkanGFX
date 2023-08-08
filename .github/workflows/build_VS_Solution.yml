@@ -29,6 +29,13 @@ jobs:
         dir 
       working-directory: ProjectFolder
       shell: cmd
+    
+    - name: List directory contents in parent folder 
+      run: | 
+        pwd
+        dir 
+      working-directory: VulkanGFX
+      shell: cmd
 
     - name: Build with Visual Studio
       run: msbuild Cross-Platform-VulkanGFX.sln /p:Configuration=Release /p:Platform=x64
