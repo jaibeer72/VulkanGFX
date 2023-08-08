@@ -34,7 +34,6 @@ jobs:
       run: | 
         pwd
         dir 
-      working-directory: VulkanGFX
       shell: cmd
 
     - name: Build with Visual Studio
