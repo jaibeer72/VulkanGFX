@@ -39,7 +39,7 @@ cd ProjectFolder
 conanbuild.bat
 
 REM Generate the Visual Studio solution
-cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -G "Visual Studio 17 2022"
+cmake -G "Visual Studio 17 2022" -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake .. 
 if %ERRORLEVEL% neq 0 (
     echo CMake command failed.
     @REM exit /b %ERRORLEVEL%
