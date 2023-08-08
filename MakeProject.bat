@@ -36,7 +36,7 @@ if %ERRORLEVEL% neq 0 (
 )
 
 REM Run conan install command
-conan install . --output-folder=ProjectFolder --build missing
+conan install . -c tools.cmake.cmaketoolchain:generator=visual_studio  --output-folder=ProjectFolder --build missing
 if %ERRORLEVEL% neq 0 (
     echo Conan install failed.
     @REM exit /b %ERRORLEVEL%
@@ -52,7 +52,7 @@ if not exist ProjectFolder (
 cd ProjectFolder
 
 @REM Run conanbuild.bat
-./conanbuild.bat
+@REM ./conanbuild.bat
 
 REM Generate the Visual Studio solution
 cmake -G "Visual Studio 17 2022" -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake .. 

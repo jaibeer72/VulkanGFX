@@ -14,7 +14,8 @@ file(GLOB_RECURSE SOURCES "Source/*.cpp" "Source/*.h" "Source/*.hpp")
 # Set the include directories via conan dependencies
 include(${CMAKE_BINARY_DIR}/conan_toolchain.cmake)
 
-# Find the required packages
+# Include dependencies from Conan
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR})
 find_package(Vulkan REQUIRED)
 find_package(glm REQUIRED)
 find_package(glfw3 REQUIRED)
@@ -29,10 +30,3 @@ set_property(TARGET Cross-Platform-VulkanGFX PROPERTY CXX_STANDARD 11)
 # # Link Conan libraries
  target_link_libraries(${PROJECT_NAME} PUBLIC Vulkan::Vulkan glm::glm glfw)
  target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_11)
-
- # Set the include directories
- include_directories(
-    ${VULKAN_INCLUDE_DIR}
-    ${GLFW_INCLUDE_DIR}
-    ${GLM_INCLUDE_DIR}
-)
