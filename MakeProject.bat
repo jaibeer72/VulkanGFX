@@ -15,7 +15,7 @@
 @REM Check if conan profile is exist
 conan profile detect
 @REM run conan install command
-conan install . -s build_type=Debug -c tools.cmake.cmaketoolchain:generator="Visual Studio 17 2022" --output-folder=ProjectFolder --build missing
+conan install . -s build_type=Debug --output-folder=ProjectFolder --build missing
 
 @REM check if install was sucessful
 if not exist ProjectFolder (
