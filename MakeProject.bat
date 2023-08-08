@@ -27,7 +27,7 @@ if not exist ProjectFolder (
 cd ProjectFolder
 
 REM Generate the Visual Studio solution
-cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -G "Visual Studio 17 2022" ..
+cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -G "Visual Studio 17 2022" 
 
 echo Visual Studio solution generated in the build directory.
 pause
