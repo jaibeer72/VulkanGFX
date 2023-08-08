@@ -4,6 +4,6 @@
         "conan": {}
     },
     "include": [
-        "/Users/jaibeerdugal/Documents/PersonalProject/VulkanGFX/ProjectFolder/CMakePresets.json"
+        "F:\\Workspace\\VulkanGFX\\ProjectFolder\\CMakePresets.json"
     ]
 }

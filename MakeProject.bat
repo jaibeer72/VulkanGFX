@@ -11,32 +11,48 @@
 @REM     curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 @REM     python get-pip.py
 @REM )
+@REM Check if conan exists 
+
+@REM check if pip exists else install pip 
+
+pip -v 
+if %ERRORLEVEL new 0(
+    echo pip not found 
+    python -m ensurepip --upgrade
+)
+
+conan -v 
+if %ERRORLEVEL neq 0(
+    echo conan not found
+    pip install conan 
+    @REM install Conan
+)
 
 REM Check if conan profile exists
 conan profile detect
 if %ERRORLEVEL% neq 0 (
     echo Conan profile detection failed.
-    exit /b %ERRORLEVEL%
+    @REM exit /b %ERRORLEVEL%
 )
 
 REM Run conan install command
 conan install . --output-folder=ProjectFolder --build missing
 if %ERRORLEVEL% neq 0 (
     echo Conan install failed.
-    exit /b %ERRORLEVEL%
+    @REM exit /b %ERRORLEVEL%
 )
 
 REM Check if install was successful
 if not exist ProjectFolder (
     echo Conan install was not successful.
-    pause
-    exit /b 1
+    @REM pause
+    @REM exit /b 1
 )
 
 cd ProjectFolder
 
 @REM Run conanbuild.bat
-conanbuild.bat
+./conanbuild.bat
 
 REM Generate the Visual Studio solution
 cmake -G "Visual Studio 17 2022" -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake .. 

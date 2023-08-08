@@ -19,3 +19,6 @@ class YourProjectConan(ConanFile):
         
     def package_info(self):
         self.cpp_info.includedirs = ["include", "other_include"]
+
+    def build_requirements(self):
+        self.tool_requires("cmake/3.22.6")
