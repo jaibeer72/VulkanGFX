@@ -5,25 +5,12 @@
 @REM cd build
 
 @REM check if pip is installed 
-if not exist pip (
-    echo pip is not installed. 
-    @REM install pip 
-    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-    python get-pip.py
-)
-
-@REM Check if conan is installed
-if not exist conan (
-    echo conan is not installed. 
-    @REM install conan 
-    pip install conan
-)
-@REM Check if conan is installed sucessfully
-if not exist conan (
-    echo conan is not installed sucessfully. 
-    pause
-    exit
-)
+@REM if not exist pip (
+@REM     echo pip is not installed. 
+@REM     @REM install pip 
+@REM     curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+@REM     python get-pip.py
+@REM )
 
 @REM Check if conan profile is exist
 conan profile detect
