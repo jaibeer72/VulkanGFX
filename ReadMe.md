@@ -1,3 +1,6 @@
+![Mac OS Xcode File gen and Build exe](https://github.com/jaibeer72/VulkanGFX/actions/workflows/build_Xcode_Proj.yml/badge.svg?branch=main)
+![Windows VS17(2022) SLN gen and Build exe](https://github.com/jaibeer72/VulkanGFX/actions/workflows/build_VS_Solution.yml/badge.svg?branch=main)
+
 # Vulkan based modular graphics engine
 
 ## Goals of the project
@@ -23,6 +26,3 @@
 - in the folder running the command ```source MakeProject.sh``` should give you an easy way to build the project 
 
 # Build status on main
-
-![Mac OS Xcode File gen and Build exe](https://github.com/jaibeer72/VulkanGFX/actions/workflows/build_Xcode_Proj.yml/badge.svg?branch=main)
-![Windows VS17(2022) SLN gen and Build exe](https://github.com/jaibeer72/VulkanGFX/actions/workflows/build_VS_Solution.yml/badge.svg?branch=main)
