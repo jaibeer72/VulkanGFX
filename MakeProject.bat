@@ -28,21 +28,21 @@ if %ERRORLEVEL neq 0(
     @REM install Conan
 )
 
-REM Check if conan profile exists
+@REM Check if conan profile exists
 conan profile detect
 if %ERRORLEVEL% neq 0 (
     echo Conan profile detection failed.
     @REM exit /b %ERRORLEVEL%
 )
 
-REM Run conan install command
+@REM Run conan install command
 conan install . -c tools.cmake.cmaketoolchain:generator=visual_studio  --output-folder=ProjectFolder --build missing
 if %ERRORLEVEL% neq 0 (
     echo Conan install failed.
     @REM exit /b %ERRORLEVEL%
 )
 
-REM Check if install was successful
+@REM Check if install was successful
 if not exist ProjectFolder (
     echo Conan install was not successful.
     @REM pause

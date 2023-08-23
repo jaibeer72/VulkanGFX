@@ -1,7 +1,7 @@
 from conan import ConanFile
 from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout
 
-class YourProjectConan(ConanFile):
+class VulkanGFXConan(ConanFile):
     name = "Cross-Platform-VulkanGFX"
     version = "0.0.1b"
     settings = "os", "compiler", "build_type", "arch"
