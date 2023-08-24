@@ -29,3 +29,5 @@
 
 # [look at Conventions](./Docs/Conventions.md)
 
+# [!To see devlog and notes view WIKI](https://github.com/jaibeer72/VulkanGFX.wiki.git)
+
