@@ -44,6 +44,9 @@ add_executable(Cross-Platform-VulkanGFX ${SOURCE_FILES})
 # Set C++ standard
 set_property(TARGET Cross-Platform-VulkanGFX PROPERTY CXX_STANDARD 11)
 
+# set Cross-Platform-VulkanGFX as the startup project
+set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT Cross-Platform-VulkanGFX)
+
 # # Link Conan libraries
  target_link_libraries(${PROJECT_NAME} PUBLIC Vulkan::Vulkan glm::glm glfw)
  target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_11)
