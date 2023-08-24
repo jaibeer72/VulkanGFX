@@ -2,7 +2,6 @@
 
 Ask your self these before adding a module and where 
 
-
 - Core: Basic utilities, logging, and foundational classes.
 - Platform: Platform-specific code (e.g., Windows, Linux, MacOS).
 - Renderer: All Vulkan-specific code.
@@ -15,11 +14,11 @@ Ask your self these before adding a module and where
 - Assets: Asset loading and management.
 
 # Naming Conventions:
-Classes/Types: Use PascalCase (e.g., VertexBuffer, CommandPool).
-Functions/Methods: Use camelCase (e.g., initializeVulkan(), createCommandBuffers()).
-Variables: Use camelCase (e.g., vertexBuffer, commandPool).
-Constants: Use UPPER_SNAKE_CASE (e.g., MAX_FRAMES_IN_FLIGHT).
-Modules: Use PascalCase for module names and directories (e.g., Renderer, Input).
+- Classes/Types: Use PascalCase (e.g., VertexBuffer, CommandPool).
+- Functions/Methods: Use camelCase (e.g., initializeVulkan(), createCommandBuffers()).
+- Variables: Use camelCase (e.g., vertexBuffer, commandPool).
+- Constants: Use UPPER_SNAKE_CASE (e.g., MAX_FRAMES_IN_FLIGHT).
+- Modules: Use PascalCase for module names and directories (e.g., Renderer, Input).
 # Tips:
 - Encapsulation: Keep data and implementation details private as much as possible. Expose only what's necessary through public interfaces.
 - Forward Declarations: Use forward declarations to reduce dependencies between modules.
@@ -30,7 +29,7 @@ Modules: Use PascalCase for module names and directories (e.g., Renderer, Input)
 # Future Modules:
 As your project grows, I might add modules like:
 
-Physics: For physics simulation.
-Audio: For audio processing and playback.
-Networking: For multiplayer or other networked features.
-UI: For in-game user interfaces.
+- Physics: For physics simulation.
+- Audio: For audio processing and playback.
+- Networking: For multiplayer or other networked features.
+- UI: For in-game user interfaces.
