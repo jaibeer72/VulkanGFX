@@ -6,17 +6,17 @@ class VulkanGFXConan(ConanFile):
     version = "0.0.1b"
     settings = "os", "compiler", "build_type", "arch"
     requires = [
-        "vulkan-loader/1.3.239.0",     # Replace with the version you need.
-        "glm/cci.20230113"  ,   # Replace with the version you need.
+        "vulkan-loader/1.3.239.0",
+        "glm/cci.20230113",
         "glfw/3.3.8"
     ]
-    generators = "CMakeDeps", "CMakeToolchain"
+    generators = "CMakeDeps", "CMakeToolchain" 
 
     def build(self):
         cmake = CMake(self)
-        cmake.configure()
+        cmake.configure(args=["-DCMAKE_BUILD_TYPE=Debug", "-DCMAKE_EXPORT_COMPILE_COMMANDS=YES"])
         cmake.build()
-        
+
     def package_info(self):
         self.cpp_info.includedirs = ["include", "other_include"]
 

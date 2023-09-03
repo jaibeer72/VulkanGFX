@@ -10,13 +10,13 @@
 
 #include <stdio.h>
 
-class ModuleBaseInterface {
+class IModuleBaseInterface {
 public:
     void RunModule();
 protected:
-    virtual void InitializeModule();
-    virtual void UpdateModule();
-    virtual void CleanUpModule();
+    virtual void InitializeModule() = 0;
+    virtual void UpdateModule() = 0;
+    virtual void CleanUpModule() = 0;
 };
 
 #endif /* ModuleCoreInterface_hpp */
