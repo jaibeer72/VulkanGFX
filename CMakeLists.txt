@@ -1,14 +1,14 @@
-cmake_policy(SET CMP0091 NEW)
-
 # Set Minimum requirements for the project 
 cmake_minimum_required(VERSION 3.5)
 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_EXTENSIONS OFF)
-
+cmake_policy(SET CMP0091 NEW)
+cmake_policy(SET CMP0048 NEW)
 
 # Set the project name
-project(Cross-Platform-VulkanGFX VERSION 0.1.0 LANGUAGES CXX)
+project(Cross-Platform-VulkanGFX VERSION 0.1.0)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Set the include directories via conan dependencies
 include(${CMAKE_BINARY_DIR}/conan_toolchain.cmake)

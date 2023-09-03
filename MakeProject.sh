@@ -42,7 +42,7 @@ fi
 # or cmake -B ../ProjectFiles -DCMAKE_TOOLCHAIN_FILE=./build/conan_toolchain.cmake -G Xcode ..
 
 # Generate the Xcode project
-cmake .. -DCMAKE_TOOLCHAIN_FILE=cmakedeps_macros.cmake -G Xcode
+cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -G Xcode
 if [ $? -ne 0 ]; then
     echo "CMake project generation failed!"
     # exit 1
