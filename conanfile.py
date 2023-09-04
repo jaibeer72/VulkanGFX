@@ -14,11 +14,12 @@ class VulkanGFXConan(ConanFile):
 
     def build(self):
         cmake = CMake(self)
-        cmake.configure(args=["-DCMAKE_BUILD_TYPE=Debug", "-DCMAKE_EXPORT_COMPILE_COMMANDS=YES"])
+        cmake.configure()
         cmake.build()
+        cmake.install()
 
     def package_info(self):
-        self.cpp_info.includedirs = ["include", "other_include"]
+        self.cpp_info.includedirs = ["include", "src/include", "lib/include"]
 
     def build_requirements(self):
         self.tool_requires("cmake/3.22.6")

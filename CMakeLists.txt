@@ -12,7 +12,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Set the include directories via conan dependencies
 include(${CMAKE_BINARY_DIR}/conan_toolchain.cmake)
-include(${CMAKE_BINARY_DIR}/cmakedeps_macros.cmake)
+
 
 # Recursively find all source files
 file(GLOB_RECURSE SOURCE_FILES ${CMAKE_SOURCE_DIR}/Source/*.cpp ${CMAKE_SOURCE_DIR}/Source/*.h ${CMAKE_SOURCE_DIR}/Source/*.hpp)
@@ -25,7 +25,6 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR})
 find_package(Vulkan REQUIRED)
 find_package(glm REQUIRED)
 find_package(glfw3 REQUIRED)
-
 
 set(CMAKE_SKIP_RPATH TRUE)
 
@@ -40,6 +39,5 @@ set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT C
 
 # Link Conan libraries
 target_link_libraries(${PROJECT_NAME} PUBLIC Vulkan::Vulkan glm::glm glfw)
-target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_11)
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/Source)
 
