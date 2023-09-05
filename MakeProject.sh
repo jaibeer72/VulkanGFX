@@ -24,11 +24,11 @@ fi
 conan profile detect
 
 # Run Conan install with the specified build type
-conan install . -c tools.cmake.cmaketoolchain:generator=xcode --output-folder=ProjectFolder --build missing -s build_type=$BUILD_TYPE
+conan install . -c tools.cmake.cmaketoolchain:generator=Xcode --output-folder=ProjectFolder --build missing -s build_type=$BUILD_TYPE
 
 if [ $? -ne 0 ]; then
     echo "Conan install failed!"
-    exit 1
+    #exit 1
 fi
 
 # Move to build directory
@@ -38,11 +38,11 @@ cd ProjectFolder
 source conanrun.sh
 
 # Generate the Xcode project with the Conan toolchain
-cmake -G Xcode -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake ..
+cmake -G Xcode -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake .. 
 
 if [ $? -ne 0 ]; then
     echo "CMake project generation failed!"
-    exit 1
+    #exit 1
 fi
 
 
