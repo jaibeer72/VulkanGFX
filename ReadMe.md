@@ -3,6 +3,9 @@
 ![Windows VS17(2022) SLN gen and Build exe](https://github.com/jaibeer72/VulkanGFX/actions/workflows/build_VS_Solution.yml/badge.svg?branch=main)
 
 # Vulkan-based modular graphics engine
+# IMPORTANT INFOMRATION ! 
+- we might be using moltenVK on the mac side of things.
+
 
 ## Goals of the project
 
