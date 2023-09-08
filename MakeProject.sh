@@ -1,54 +1,49 @@
 #!/bin/bash
 
-# Create the build directory if it doesn't exist
-# mkdir -p build
-# cd build
+# Default build type
+BUILD_TYPE=Debug
 
-# check if pip is installed
-if ! command -v pip &> /dev/null
-then
+# Check for command-line argument for build type
+if [ "$1" ]; then
+    BUILD_TYPE=$1
+fi
+
+# Check if pip is installed
+if ! command -v pip &> /dev/null; then
     echo "pip is not installed. Installing..."
     sudo apt install python3-pip
 fi
 
 # Check if conan is installed
-if ! command -v conan &> /dev/null
-then
+if ! command -v conan &> /dev/null; then
     echo "Conan is not installed. Installing..."
     pip install conan
 fi
 
-# run conan install
-# working commands to make the 
-
+# Detect Conan profile
 conan profile detect
 
-conan install . -s build_type=Debug  --output-folder=ProjectFolder --build missing
+# Run Conan install with the specified build type
+conan install . -c tools.cmake.cmaketoolchain:generator=Xcode --output-folder=ProjectFolder --build missing -s build_type=$BUILD_TYPE
+
 if [ $? -ne 0 ]; then
     echo "Conan install failed!"
-    # exit 1
+    #exit 1
 fi
 
-# move  to build directory
+# Move to build directory
 cd ProjectFolder
 
-source conanbuild.sh
+# Source the Conan environment script
+source conanrun.sh
 
-if [ $? -ne 0 ]; then
-    echo "Failed to change directory to ProjectFolder!"
-    # exit 1
-fi
+# Generate the Xcode project with the Conan toolchain
+cmake -G Xcode -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake .. 
 
-# or cmake -B ../ProjectFiles -DCMAKE_TOOLCHAIN_FILE=./build/conan_toolchain.cmake -G Xcode ..
-
-# Generate the Xcode project
-cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -G Xcode
 if [ $? -ne 0 ]; then
     echo "CMake project generation failed!"
-    # exit 1
+    #exit 1
 fi
-#cmake -G "Xcode" ..
 
-source deactivate_conanbuild.sh
 
-echo "Xcode project generated in the build directory."
+echo "Xcode project generated in the ProjectFolder directory."
