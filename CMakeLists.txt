@@ -4,12 +4,12 @@ project(Cross-Platform-VulkanGFX VERSION 0.0.1)
 
 include(${CMAKE_BINARY_DIR}/conan_toolchain.cmake)
 
-find_package(glm REQUIRED)
-find_package(glfw3 REQUIRED)
+find_package(glm CONFIG REQUIRED)
+find_package(glfw3 CONFIG REQUIRED)
 if(APPLE)
-    find_package(MoltenVK REQUIRED)
+    find_package(MoltenVK CONFIG REQUIRED)
 else()
-    find_package(Vulkan REQUIRED)
+    find_package(Vulkan CONFIG REQUIRED)
 endif()
 
 file(GLOB_RECURSE SOURCES "Source/*.cpp" "Source/*.h" "Source/*.hpp")
@@ -19,9 +19,11 @@ source_group(TREE "${CMAKE_SOURCE_DIR}/Source" PREFIX "Source" FILES ${SOURCES})
 add_executable(VulkanGFX ${SOURCES})
 
 if(APPLE)
-    target_link_libraries(VulkanGFX PRIVATE glm::glm glfw moltenvk::moltenvk)
+    target_link_libraries(VulkanGFX PUBLIC glm::glm glfw moltenvk::moltenvk)
 else()
-    target_link_libraries(VulkanGFX PRIVATE glm::glm glfw Vulkan::Vulkan)
+    target_link_libraries(VulkanGFX PUBLIC glm::glm glfw Vulkan::Vulkan)
 endif()
 
-target_include_directories(VulkanGFX PRIVATE include src/include lib/include)
+target_include_directories(VulkanGFX PUBLIC include src/include lib/include)
+
+set(CMAKE_SUPPRESS_REGENERATION TRUE)

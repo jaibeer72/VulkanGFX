@@ -11,8 +11,6 @@
 #include <stdio.h>
 
 class IModuleBaseInterface {
-public:
-    void RunModule();
 protected:
     virtual void InitializeModule() = 0;
     virtual void UpdateModule() = 0;

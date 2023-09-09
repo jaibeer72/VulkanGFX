@@ -1,6 +1,6 @@
 #define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
-
+#include "glm/glm.hpp"
 
 #include <iostream>
 #include <stdexcept>
@@ -25,7 +25,7 @@ private:
 
     void initWindow() {
         glfwInit();
-        
+        glm::vec4 position = glm::vec4(glm::vec3(0.0), 1.0);
         glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
         glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
