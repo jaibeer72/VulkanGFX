@@ -28,7 +28,7 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ~/.conan/data
-        key: ${{ runner.os }}-conan-${{ hashFiles('conanfile.txt') }} # or use 'conanfile.py' if you have a Python Conan file
+        key: ${{ runner.os }}-conan-${{ hashFiles('conanfile.py') }} 
         restore-keys: |
           ${{ runner.os }}-conan-
 
