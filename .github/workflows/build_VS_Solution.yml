@@ -24,14 +24,10 @@ jobs:
     - name: Conan version
       run: echo "${{ steps.conan.outputs.version }}"
     
-    - name: Get Conan cache directory
-      id: conan_cache
-      run: echo "::set-output name=path::$(conan config get storage.path)"
-    
     - name: Cache Conan packages
       uses: actions/cache@v2
       with:
-        path: ${{ steps.conan_cache.outputs.path }}
+        path: ~/.conan2
         key: ${{ runner.os }}-conan-${{ hashFiles('conanfile.py') }} 
         restore-keys: |
           ${{ runner.os }}-conan-
