@@ -26,6 +26,14 @@ jobs:
     - name: Set execute permissions on script
       run: chmod +x MakeProject.sh
 
+    - name: Cache Conan packages
+      uses: actions/cache@v2
+      with:
+        path: ~/.conan/data
+        key: ${{ runner.os }}-conan-${{ hashFiles('conanfile.txt') }} # or use 'conanfile.py' if you have a Python Conan file
+        restore-keys: |
+          ${{ runner.os }}-conan-
+
     - name: Run MakeProject.sh
       run: ./MakeProject.sh
 
