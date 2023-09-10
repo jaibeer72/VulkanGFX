@@ -10,22 +10,24 @@
 
 #define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
-#include <vector>
-#include <string>
 
 #include "../Core/Public/ModuleCoreInterface.hpp"
+#include "../Config.hpp"
 
-class Window : public IModuleBaseInterface
+
+class Window : public IModule
 {
 public:
     void InitializeModule() override;
-    
     void UpdateModule() override;
-    
     void CleanUpModule() override;
+    std::vector<std::string> GetDependencies() const override;
+    void SetDependencies(const std::unordered_map<std::string, IModule*>& dependencies) override;
 
 private:
-    
+    const uint32_t m_Width = Config::Window_Width;
+    const uint32_t m_Height = Config::Window_Height;
 };
+
 
 #endif /* Window_hpp */
