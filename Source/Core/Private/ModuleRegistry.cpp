@@ -6,9 +6,12 @@
 
 #include "../Public/ModuleRegistry.hpp"
 #include "../Public/ModuleCoreInterface.hpp"
+#include <unordered_set>
 
 
 void ModuleRegistry::InitializeModules() {
+    
+    auto sortedModules = SortModulesByDependencies();
     for (const auto& [name, module] : modules) {
         module->InitializeModule();
     }
@@ -26,8 +29,32 @@ void ModuleRegistry::CleanUpModules() {
     }
 }
 
+std::vector<IModule*>  ModuleRegistry::SortModulesByDependencies() {
+
+    IsDirty = true;
+
+    std::vector<IModule*> sortedModules;
+    std::unordered_set<std::string> visited;
+
+    std::function<void(const std::string&)> visit = [&](const std::string& moduleName) {
+        if (visited.find(moduleName) == visited.end()) {
+            visited.insert(moduleName);
+            for (const auto& depName : dependencies[moduleName]) {
+                visit(depName);
+            }
+            sortedModules.push_back(modules[moduleName]);
+        }
+    };
+
+    for (const auto& [name, module] : modules) {
+        visit(name);
+    }
+
+    return sortedModules;
+}
+
 template<typename T>
-void ModuleRegistry::RegisterModule(T *instance) {
+void ModuleRegistry::RegisterModule(T *instance , const std::vector<IModule*>& dependencies) {
     modules[typeid(T).name()] = instance;
 }
 

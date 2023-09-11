@@ -18,11 +18,13 @@ public:
         return instance;
     }
 
+private:
+    // making function private
     template<typename T>
     T* GetModule() const ;
 
     template<typename T>
-    void RegisterModule(T* instance);
+    void RegisterModule(T* instance , const std::vector<IModule*>& dependencies);
 
     void InitializeModules();
 
@@ -30,9 +32,12 @@ public:
 
     void CleanUpModules();
 
+    std::vector<IModule*>  SortModulesByDependencies();
+
 private:
+    // setting module dirty as soon as it changes
+    bool IsDirty = false;
     std::unordered_map<std::string, IModule*> modules;
+    std::unordered_map<std::string, std::vector<std::string>> dependencies;
 };
-
-
 #endif //CROSS_PLATFORM_VULKANGFX_MODULEREGISTRY_HPP

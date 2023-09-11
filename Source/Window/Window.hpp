@@ -13,6 +13,8 @@
 
 #include "../Core/Public/ModuleCoreInterface.hpp"
 #include "../Config.hpp"
+#include "../Core/Private/ModuleRegistery_Macros.hpp"
+#include "../Core/Public/ModuleRegistry.hpp"
 
 
 class Window : public IModule
@@ -28,6 +30,5 @@ private:
     const uint32_t m_Width = Config::Window_Width;
     const uint32_t m_Height = Config::Window_Height;
 };
-
-
+REGISTER_MODULE(Window)
 #endif /* Window_hpp */

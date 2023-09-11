@@ -9,7 +9,6 @@
 
 
 void Window::InitializeModule() {
-
 }
 
 void Window::UpdateModule() {
