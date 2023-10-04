@@ -8,6 +8,9 @@
 #include <vector>
 #include <unordered_map>
 #include <string>
+#include <memory>
+#include <typeindex>
+#include <typeinfo>
 
 class IModule;
 
@@ -18,13 +21,26 @@ public:
         return instance;
     }
 
-private:
-    // making function private
     template<typename T>
-    T* GetModule() const ;
+    void RegisterModule(std::shared_ptr<T> instance, const std::string& moduleName, const std::vector<std::string>& moduleDependencies) {
+        modules[std::type_index(typeid(T))].emplace(moduleName, instance);
+        dependencies[moduleName] = moduleDependencies;
+    }
 
     template<typename T>
-    void RegisterModule(T* instance , const std::vector<IModule*>& dependencies);
+    T* GetModule(const std::string& moduleName) const {
+        auto moduleTypeIt = modules.find(std::type_index(typeid(T)));
+        if (moduleTypeIt != modules.end()) {
+            const auto& moduleInstances = moduleTypeIt->second;
+            auto instanceIt = moduleInstances.find(moduleName);
+            if (instanceIt != moduleInstances.end()) {
+                return dynamic_cast<T*>(instanceIt->second.get());
+            }
+        }
+        return nullptr;
+    }
+
+private:
 
     void InitializeModules();
 
@@ -37,7 +53,8 @@ private:
 private:
     // setting module dirty as soon as it changes
     bool IsDirty = false;
-    std::unordered_map<std::string, IModule*> modules;
+    // Use a type_index as the key to store modules of the same type
+    std::unordered_map<std::type_index, std::unordered_map<std::string, std::shared_ptr<IModule>>> modules;
     std::unordered_map<std::string, std::vector<std::string>> dependencies;
 };
 #endif //CROSS_PLATFORM_VULKANGFX_MODULEREGISTRY_HPP

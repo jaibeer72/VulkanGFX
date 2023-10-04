@@ -2,15 +2,18 @@
 // Created by Jaibeer Dugal on 09/09/2023.
 //
 
-#define REGISTER_MODULE(ModuleClass, ...) \
+#include "../Public/ModuleRegistry.hpp"
+
+#define REGISTER_MODULE(ModuleClass, ModuleName, ...)\
 namespace { \
     struct ModuleClass##Registrar { \
         ModuleClass##Registrar() { \
-            static ModuleClass instance; \
-            ModuleRegistry::Instance().RegisterModule<ModuleClass, __VA_ARGS__>(&instance); \
+            static std::shared_ptr<ModuleClass> ModuleName = std::make_shared<ModuleClass>(); \
+            ModuleRegistry::Instance().RegisterModule(ModuleName, #ModuleName,{__VA_ARGS__}); \
         } \
     }; \
     static ModuleClass##Registrar ModuleClass##registrar; \
 }
+
 
 

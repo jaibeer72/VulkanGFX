@@ -23,12 +23,11 @@ public:
     void InitializeModule() override;
     void UpdateModule() override;
     void CleanUpModule() override;
-    std::vector<std::string> GetDependencies() const override;
-    void SetDependencies(const std::unordered_map<std::string, IModule*>& dependencies) override;
 
 private:
     const uint32_t m_Width = Config::Window_Width;
     const uint32_t m_Height = Config::Window_Height;
 };
-REGISTER_MODULE(Window)
+
+REGISTER_MODULE(Window, mainWindow);
 #endif /* Window_hpp */
