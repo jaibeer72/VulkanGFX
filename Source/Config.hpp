@@ -11,6 +11,8 @@
 namespace Config {
     static const uint Window_Width = 800;
     static const uint Window_Height = 600;
+    static const char* Window_Name = "VulkanGFX";
+    static const char* Engine_Name = "CrossPlatform VulkanGFX";
 }
 
 
