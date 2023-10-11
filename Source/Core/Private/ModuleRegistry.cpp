@@ -6,7 +6,10 @@
 
 #include "../Public/ModuleRegistry.hpp"
 #include "../Public/ModuleCoreInterface.hpp"
+#include "../Private/ModuleRegistery_Macros.hpp"
+
 #include <unordered_set>
+#include <functional>
 
 void ModuleRegistry::InitializeModules() {
    // auto sortedModules = SortModulesByDependencies();
@@ -45,6 +48,7 @@ std::vector<IModule*> ModuleRegistry::SortModulesByDependencies() {
             for (const auto& depName : dependencies[moduleName]) {
                 visit(depName);
             }
+
             //sortedModules.push_back(modules[moduleName]);
         }
     };

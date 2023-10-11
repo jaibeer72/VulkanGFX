@@ -3,6 +3,7 @@
 //
 
 #include "../Public/ModuleRegistry.hpp"
+#include <stdexcept>
 
 /* TODO : List of things here
  Documentation: Add comments or documentation to the macro to explain its purpose and usage. This will help other developers understand how to use it correctly.
@@ -32,6 +33,3 @@ namespace { \
     }; \
     static ModuleClass##Registrar ModuleClass##registrar; \
 }
-
-
-
