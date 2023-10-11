@@ -52,6 +52,6 @@ jobs:
       shell: cmd
 
     - name: Build with Visual Studio
-      run: msbuild Cross-Platform-VulkanGFX.sln /p:Configuration=Debug /p:Platform=x64
+      run: msbuild Cross-Platform-VulkanGFX.sln /p:Configuration=Debug /p:Platform=x64 /p:CppStandard=c++20
       working-directory: ProjectFolder
       shell: cmd
