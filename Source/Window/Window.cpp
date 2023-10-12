@@ -6,10 +6,9 @@
 //
 
 #include "Window.hpp"
-// TODO: Add GLFW to the project
+
 
 void Window::InitializeModule() {
-
 }
 
 void Window::UpdateModule() {

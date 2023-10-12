@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.22.6)
 
 project(Cross-Platform-VulkanGFX VERSION 0.0.1)
 
+set(CMAKE_CXX_STANDARD 20)
+
 include(${CMAKE_BINARY_DIR}/conan_toolchain.cmake)
 
 find_package(glm CONFIG REQUIRED)
