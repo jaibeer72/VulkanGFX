@@ -1,9 +1,13 @@
 {
     "version": 4,
-    "vendor": {
-        "conan": {}
-    },
-    "include": [
-        "/Users/jaibeerdugal/Documents/PersonalProject/VulkanGFX/ProjectFolder/CMakePresets.json"
-    ]
+    "configurePresets": [
+        {
+          "name": "default",
+          "generator": "Xcode",
+          "binaryDir": "${sourceDir}/build",
+          "cacheVariables": {
+            "CMAKE_TOOLCHAIN_FILE": "./vcpkg/scripts/buildsystems/vcpkg.cmake"
+          }
+        }
+      ]
 }

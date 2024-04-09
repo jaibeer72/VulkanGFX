@@ -160,3 +160,6 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Custome vcpkg to ignore
+vcpkg_installed/
