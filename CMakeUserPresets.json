@@ -1,13 +1,8 @@
 {
-    "version": 4,
-    "configurePresets": [
-        {
-          "name": "default",
-          "generator": "Xcode",
-          "binaryDir": "${sourceDir}/build",
-          "cacheVariables": {
-            "CMAKE_TOOLCHAIN_FILE": "./vcpkg/scripts/buildsystems/vcpkg.cmake"
-          }
-        }
-      ]
+  "name": "default",
+  "generator": "${presetGenerator}",
+  "binaryDir": "${sourceDir}/build",
+  "cacheVariables": {
+    "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake"
+  }
 }
