@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.22.6)
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
+
+set(CMAKE_TOOLCHAIN_FILE "${CMAKE_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake")
 
 project(Cross-Platform-VulkanGFX VERSION 0.0.1)
 
@@ -11,9 +13,6 @@ find_package(Vulkan  REQUIRED)  # Make sure VulkanLoader is installed and its CM
 
 # List your source files
 file(GLOB_RECURSE SOURCES "Source/*.cpp" "Source/*.h" "Source/*.hpp")
-
-# Group source files in IDE
-source_group(TREE "${CMAKE_SOURCE_DIR}/Source" PREFIX "Source" FILES ${SOURCES})
 
 # Create executable
 add_executable(VulkanGFX ${SOURCES})

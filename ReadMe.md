@@ -34,3 +34,11 @@
 
 # [!To see devlog and notes view WIKI](https://github.com/jaibeer72/VulkanGFX/wiki)
 
+# Updates
+
+working updates vcpkg being used for cross platofmr 
+- mac os Requimentens ```brew install pkg-config```
+- install the requirements using ```./vcpkg/vcpkg install```
+- then build the project using ```cmake -B build -S .```
+- ```cmake --build build ```
+
