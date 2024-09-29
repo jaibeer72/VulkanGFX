@@ -27,7 +27,7 @@
 - cmake 
 - pip / will be installed by the run.sh file if possible (Sadly currently working on the Mac and I have yet to work on bat files. So not all edge cases have been considered. It's in the pipeline for September.)  
 
-## how to build the Xcode project 
+## how to build the Xcode project \[Depricated for now\]
 - in the folder running the command ```source MakeProject.sh``` should give you an easy way to build the project 
 
 # [look at Conventions](./Docs/Conventions.md)

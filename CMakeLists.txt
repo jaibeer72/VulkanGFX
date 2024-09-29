@@ -8,8 +8,7 @@ project(Cross-Platform-VulkanGFX VERSION 0.0.1)
 # Find required packages
 find_package(glm CONFIG REQUIRED)
 find_package(glfw3 CONFIG REQUIRED)
-find_package(Vulkan  REQUIRED)  # Make sure VulkanLoader is installed and its CMake configuration is found
-
+find_package(Vulkan REQUIRED)  # Make sure VulkanLoader is installed and its CMake configuration is found
 
 # List your source files
 file(GLOB_RECURSE SOURCES "Source/*.cpp" "Source/*.h" "Source/*.hpp")
