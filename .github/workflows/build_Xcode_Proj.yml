@@ -15,30 +15,21 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+
+    - name: Install Homebrew
+      run: |
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     
-    - name: Install Conan
-      id: conan
-      uses: turtlebrowser/get-conan@main
+    - name: Install vcpkg dependencies
+      run: |
+        brew install pkg-config
+        ./vcpkg/bootstrap-vcpkg.sh
 
-    - name: Conan version
-      run: echo "${{ steps.conan.outputs.version }}"
+    - name: Install vcpkg packages
+      run: ./vcpkg/vcpkg install
 
-    - name: Set execute permissions on script
-      run: chmod +x MakeProject.sh
+    - name: Configure CMake
+      run: cmake -B build -S .
 
-    - name: Cache Conan packages
-      uses: actions/cache@v2
-      with:
-        path: ~/.conan2
-        key: ${{ runner.os }}-conan-${{ hashFiles('conanfile.py') }} 
-        restore-keys: |
-          ${{ runner.os }}-conan-
-
-    - name: Run MakeProject.sh
-      run: ./MakeProject.sh
-
-    - name: Build with Xcode
-      run: xcodebuild -project Cross-Platform-VulkanGFX.xcodeproj -alltargets
-      working-directory: ProjectFolder
-
-
+    - name: Build with CMake
+      run: cmake --build build
