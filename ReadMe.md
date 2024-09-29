@@ -27,10 +27,18 @@
 - cmake 
 - pip / will be installed by the run.sh file if possible (Sadly currently working on the Mac and I have yet to work on bat files. So not all edge cases have been considered. It's in the pipeline for September.)  
 
-## how to build the Xcode project 
+## how to build the Xcode project \[Depricated for now\]
 - in the folder running the command ```source MakeProject.sh``` should give you an easy way to build the project 
 
 # [look at Conventions](./Docs/Conventions.md)
 
 # [!To see devlog and notes view WIKI](https://github.com/jaibeer72/VulkanGFX/wiki)
+
+# Updates
+
+working updates vcpkg being used for cross platofmr 
+- mac os Requimentens ```brew install pkg-config```
+- install the requirements using ```./vcpkg/vcpkg install```
+- then build the project using ```cmake -B build -S .```
+- ```cmake --build build ```
 

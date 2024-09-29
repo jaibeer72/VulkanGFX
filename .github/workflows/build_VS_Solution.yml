@@ -8,7 +8,6 @@ on:
     branches:
       - main
 
-
 jobs:
   build:
     runs-on: windows-latest
@@ -16,42 +15,17 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
-    - name: Install Conan
-      id: conan
-      uses: turtlebrowser/get-conan@main
-    
-    - name: Conan version
-      run: echo "${{ steps.conan.outputs.version }}"
-    
-    - name: Cache Conan packages
-      uses: actions/cache@v2
       with:
-        path: ~/.conan2
-        key: ${{ runner.os }}-conan-${{ hashFiles('conanfile.py') }} 
-        restore-keys: |
-          ${{ runner.os }}-conan-
+        submodules: true
 
-    - name: Run MakeProject.bat
-      run: .\MakeProject.bat
-      
-    - name: Add msbuild to PATH
-      uses: microsoft/setup-msbuild@v1.1
+    - name: Install vcpkg dependencies
+      run: .\vcpkg\bootstrap-vcpkg.bat
 
-    - name: List directory contents
-      run: | 
-        pwd
-        dir 
-      working-directory: ProjectFolder
-      shell: cmd
-    
-    - name: List directory contents in parent folder 
-      run: | 
-        pwd
-        dir 
-      shell: cmd
+    - name: Install vcpkg packages
+      run: .\vcpkg\vcpkg install
 
-    - name: Build with Visual Studio
-      run: msbuild Cross-Platform-VulkanGFX.sln /p:Configuration=Release /p:Platform=x64
-      working-directory: ProjectFolder
-      shell: cmd
+    - name: Configure CMake
+      run: cmake -B build -S .
+
+    - name: Build with CMake
+      run: cmake --build build
