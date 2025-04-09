@@ -37,4 +37,28 @@
 # [!To see devlog and notes view WIKI](https://github.com/jaibeer72/VulkanGFX/wiki)
 
 
+# Dev help 
+
+## VSCode launch settings for Debugging using lldb-dap 
+
+- Extention required lldb-dap 
+
+```json 
+     "configurations": [
+        {
+            "name": "Debug Vulkan App",
+            "type": "lldb-dap",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/VulkanGFX", // Path to your output binary
+            "args": [], // Add any command-line arguments your program needs
+            "cwd": "${workspaceFolder}", // Set the working directory to the project root
+            "stopAtEntry": false, // Set to true if you want to stop at the program's entry point
+            "environment": [], // Add any environment variables if needed
+            "internalConsoleOptions": "openOnSessionStart",
+            "miDebuggerPath": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lldb" 
+        }
+    ]
+```
+
+
 
