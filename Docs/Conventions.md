@@ -26,6 +26,11 @@ Ask your self these before adding a module and where
 - Consistency: Whatever conventions or structures you decide on, be consistent. It makes the codebase easier to navigate and understand.
 - Expandability: Design your modules with future expandability in mind. For instance, if you plan to support different rendering backends in the future (like DirectX or Metal), design your Renderer module to be abstracted away from the specific details of Vulkan.
   
+## Ownership rules (high level)
+- Window owns the OS/GLFW window handle. It should be created and destroyed by the Window module.
+- Renderer (VulkanRenderer) owns Vulkan objects such as VkInstance, VkSurfaceKHR, VkDevice, and swapchains. The renderer should release these before the Window is destroyed.
+- The application (main) coordinates the initialization and ordering: create Window first, then create Renderer passing window handle; cleanup in reverse order.
+  
 # Future Modules:
 As your project grows, I might add modules like:
 
