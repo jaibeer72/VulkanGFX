@@ -20,6 +20,30 @@
             "inherits": [
                 "TestCmake"
             ]
+        },
+        {
+            "name": "VisualStudio",
+            "displayName": "Visual Studio 2022",
+            "description": "Uses Visual Studio 2022 generator",
+            "generator": "Visual Studio 17 2022",
+            "binaryDir": "${sourceDir}out/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake",
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}"
+            }
+        },
+        {
+            "name": "MinGW",
+            "displayName": "MinGW Makefiles",
+            "description": "Uses MinGW Makefiles generator",
+            "generator": "MinGW Makefiles",
+            "binaryDir": "${sourceDir}out/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake",
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}"
+            }
         }
     ]
 }
