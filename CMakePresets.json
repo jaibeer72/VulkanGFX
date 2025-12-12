@@ -57,5 +57,27 @@
                 "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}"
             }
         }
+    ],
+    "buildPresets": [
+        {
+            "name": "VulkanGFX:Debug",
+            "configurePreset": "VulkanGFX",
+            "configuration": "Debug"
+        },
+        {
+            "name": "osx-xcode:Debug",
+            "configurePreset": "osx-xcode",
+            "configuration": "Debug"
+        },
+        {
+            "name": "VisualStudio:Debug",
+            "configurePreset": "VisualStudio",
+            "configuration": "Debug"
+        },
+        {
+            "name": "MinGW:Debug",
+            "configurePreset": "MinGW",
+            "configuration": "Debug"
+        }
     ]
 }

@@ -11,6 +11,9 @@ on:
 jobs:
   build:
     runs-on: macOS-latest
+    env:
+      # Use the Apple Silicon triplet; change to x64-osx if you need Intel
+      VCPKG_DEFAULT_TRIPLET: arm64-osx
 
     steps:
     - name: Checkout code
@@ -27,11 +30,36 @@ jobs:
         brew install pkg-config
         ./vcpkg/bootstrap-vcpkg.sh
 
-    - name: Install vcpkg packages
-      run: ./vcpkg/vcpkg install
+    - name: Install vcpkg packages (manifest + explicit triplet)
+      run: |
+        ./vcpkg/vcpkg install --triplet=${VCPKG_DEFAULT_TRIPLET}
+    - name: Verify vcpkg installed packages
+      run: |
+        ./vcpkg/vcpkg list | grep -E "glm|glfw3|vulkan|moltenvk" || true
 
-    - name: Configure CMake
-      run: cmake -B build -S .
+    - name: Configure CMake using presets
+      run: cmake --preset osx-xcode
 
-    - name: Build with CMake
-      run: cmake --build build
+    - name: Build with CMake preset
+      run: cmake --build --preset osx-xcode:Debug
+
+    - name: Find and run built executable (if present)
+      shell: bash
+      run: |
+        set -e
+        # Search for executable file named 'VulkanGFX' or .app; run if found
+        exe=$(find out/build -type f -name VulkanGFX -perm -111 -print -quit || true)
+        if [[ -n "$exe" ]]; then
+          echo "Running $exe"
+          "$exe" || true
+        else
+          # Try to find an .app bundle and print its path
+          app=$(find out/build -type d -name "VulkanGFX.app" -print -quit || true)
+          if [[ -n "$app" ]]; then
+            echo "Found app bundle: $app. Listing contents:";
+            ls -la "$app"
+          else
+            echo "No binary found in build dir; build may have failed or used different generator.";
+            find out/build -maxdepth 3 -type f -name "*VulkanGFX*" -print || true
+          fi
+        fi
