@@ -1,8 +1,0 @@
-{
-  "name": "default",
-  "generator": "${presetGenerator}",
-  "binaryDir": "${sourceDir}/build",
-  "cacheVariables": {
-    "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake"
-  }
-}
