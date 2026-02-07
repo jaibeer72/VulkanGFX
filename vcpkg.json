@@ -4,6 +4,13 @@
   "dependencies": [
     "glfw3",
     "glm",
-    "vulkan"
+    {
+      "name": "vulkan",
+      "platform": "windows | osx"
+    },
+    {
+      "name": "vulkan-headers",
+      "platform": "linux"
+    }
   ]
 }

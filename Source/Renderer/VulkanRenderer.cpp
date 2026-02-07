@@ -8,6 +8,12 @@ VulkanRenderer::~VulkanRenderer() {
 }
 
 void VulkanRenderer::initialize(GLFWwindow* window) {
+    // Check if GLFW supports Vulkan
+    if (!glfwVulkanSupported()) {
+        throw std::runtime_error("GLFW reports Vulkan is not supported on this system!");
+    }
+    std::cout << "GLFW Vulkan support: OK\n";
+
     if (!instance) {
         createInstance();
     }
@@ -43,6 +49,15 @@ void VulkanRenderer::createInstance() {
     uint32_t glfwExtensionCount = 0;
     const char** glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
 
+    if (!glfwExtensions) {
+        throw std::runtime_error("glfwGetRequiredInstanceExtensions failed! Vulkan might not be available.");
+    }
+
+    std::cout << "GLFW required extensions (" << glfwExtensionCount << "):" << std::endl;
+    for (uint32_t i = 0; i < glfwExtensionCount; i++) {
+        std::cout << "  " << glfwExtensions[i] << std::endl;
+    }
+
     std::vector<const char*> extensions(glfwExtensions, glfwExtensions + glfwExtensionCount);
 #if __APPLE__
     extensions.push_back(VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME);
@@ -54,18 +69,28 @@ void VulkanRenderer::createInstance() {
 
     createInfo.enabledLayerCount = 0;
 
-    if (vkCreateInstance(&createInfo, nullptr, &instance) != VK_SUCCESS) {
+    VkResult result = vkCreateInstance(&createInfo, nullptr, &instance);
+    if (result != VK_SUCCESS) {
+        std::cerr << "vkCreateInstance failed with error code: " << result << std::endl;
         throw std::runtime_error("failed to create Vulkan instance!");
     }
+    std::cout << "Vulkan instance created successfully\n";
 }
 
 void VulkanRenderer::createSurface(GLFWwindow* window) {
     if (!instance) throw std::runtime_error("createSurface: instance not created");
     if (surface != VK_NULL_HANDLE) return;
 
-    if (glfwCreateWindowSurface(instance, window, nullptr, &surface) != VK_SUCCESS) {
+    std::cout << "Creating Vulkan surface..." << std::endl;
+    std::cout << "  Instance: " << instance << std::endl;
+    std::cout << "  Window: " << window << std::endl;
+
+    VkResult result = glfwCreateWindowSurface(instance, window, nullptr, &surface);
+    if (result != VK_SUCCESS) {
+        std::cerr << "glfwCreateWindowSurface failed with error code: " << result << std::endl;
         throw std::runtime_error("failed to create window surface!");
     }
+    std::cout << "Surface created successfully: " << surface << std::endl;
 }
 
 void VulkanRenderer::destroyInstance() {
