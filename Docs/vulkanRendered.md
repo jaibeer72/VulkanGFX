@@ -30,4 +30,16 @@
 - **Fences & Semaphores** — Sync tools: semaphores for GPU-to-GPU waiting, fences tell the CPU when the GPU finished.
 
 Want this even simpler or drawn as pictures? Tell me which points to illustrate.
-    
+
+---
+
+### Quick try — vk-bootstrap example ✅
+
+I've added a small GLFW example that uses `vk-bootstrap` to create an instance, pick a GPU, create a device and a swapchain. Build with CMake (default ON):
+
+- cmake -S . -B build
+- cmake --build build --target vk_bootstrap_example
+
+Run `./build/vk_bootstrap_example` to see the integration. It opens a window and prints the swapchain image count.
+
+If you prefer vendoring or a submodule instead of vcpkg, tell me and I will switch the config.
