@@ -1,7 +1,8 @@
 # VulkanGFX
 
-![Mac OS Xcode File gen and Build exe](https://github.com/jaibeer72/VulkanGFX/actions/workflows/build_Xcode_Proj.yml/badge.svg?branch=main)
-![Windows VS17(2022) SLN gen and Build exe](https://github.com/jaibeer72/VulkanGFX/actions/workflows/build_VS_Solution.yml/badge.svg?branch=main)
+[![Windows](https://img.shields.io/github/actions/workflow/status/jaibeer72/VulkanGFX/ci.yml?branch=main&label=Windows)](https://github.com/jaibeer72/VulkanGFX/actions/workflows/ci.yml)
+[![Linux](https://img.shields.io/github/actions/workflow/status/jaibeer72/VulkanGFX/ci.yml?branch=main&label=Linux)](https://github.com/jaibeer72/VulkanGFX/actions/workflows/ci.yml)
+[![macOS](https://img.shields.io/github/actions/workflow/status/jaibeer72/VulkanGFX/ci.yml?branch=main&label=macOS)](https://github.com/jaibeer72/VulkanGFX/actions/workflows/ci.yml)
 
 A cross-platform, Vulkan-based modular graphics engine.
 
