@@ -54,7 +54,8 @@ sudo pacman -S base-devel cmake ninja curl zip unzip tar git
 
 # Ubuntu/Debian
 sudo apt-get install build-essential cmake ninja-build curl zip unzip tar git \
-    libxinerama-dev libxcursor-dev xorg-dev libglu1-mesa-dev pkg-config
+    libxinerama-dev libxcursor-dev xorg-dev libglu1-mesa-dev pkg-config \
+    libvulkan-dev mesa-vulkan-drivers vulkan-tools
 
 # Fedora
 sudo dnf install @development-tools cmake ninja-build curl zip unzip tar git \
