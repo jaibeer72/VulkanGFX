@@ -2,13 +2,47 @@
 #include <iostream>
 #include <stdexcept>
 #include <cstdlib>
+#include <filesystem>
+#include <vector>
+#include <string>
 
 #include "Window/Window.hpp"
 #include "Renderer/VulkanRenderer.hpp"
 #include "Input/InputManager.hpp"
 
+#if __APPLE__
+static void ConfigureMacOSVulkanIcd() {
+    const char* existing = std::getenv("VK_ICD_FILENAMES");
+    if (existing && *existing) {
+        return;
+    }
+
+    std::vector<std::string> prefixes;
+    if (const char* brewPrefix = std::getenv("HOMEBREW_PREFIX"); brewPrefix && *brewPrefix) {
+        prefixes.emplace_back(brewPrefix);
+    }
+    prefixes.emplace_back("/opt/homebrew");
+    prefixes.emplace_back("/usr/local");
+
+    for (const auto& prefix : prefixes) {
+        const std::filesystem::path icdPath =
+            std::filesystem::path(prefix) / "opt" / "vulkan-tools" / "lib" / "mock_icd" / "VkICD_mock_icd.json";
+
+        if (std::filesystem::exists(icdPath)) {
+            setenv("VK_ICD_FILENAMES", icdPath.c_str(), 1);
+            std::cout << "Using Vulkan mock ICD: " << icdPath << std::endl;
+            return;
+        }
+    }
+}
+#endif
+
 int main() {
     try {
+#if __APPLE__
+        ConfigureMacOSVulkanIcd();
+#endif
+
         // Create and initialize the window (owner of GLFW window handle)
         Window window(800, 600, "VulkanGFX");
         if (!window.initialize()) {

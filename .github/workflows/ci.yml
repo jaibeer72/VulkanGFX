@@ -1,0 +1,125 @@
+name: Cross-Platform CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-validate:
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Windows (Visual Studio)
+            os: windows-latest
+            triplet: x64-windows
+            configurePreset: VisualStudio
+            buildPreset: VisualStudio:Debug
+          - name: Linux (Ninja)
+            os: ubuntu-latest
+            triplet: x64-linux
+            configurePreset: linux-ninja
+            buildPreset: linux-ninja:Debug
+          - name: macOS (Xcode)
+            os: macos-latest
+            triplet: arm64-osx
+            configurePreset: osx-xcode
+            buildPreset: osx-xcode:Debug
+
+    env:
+      VCPKG_DEFAULT_TRIPLET: ${{ matrix.triplet }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Install Linux system dependencies
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            pkg-config \
+            ninja-build \
+            libx11-dev \
+            libxext-dev \
+            libxrandr-dev \
+            libxinerama-dev \
+            libxcursor-dev \
+            libxi-dev \
+            libxkbcommon-dev \
+            libwayland-dev \
+            wayland-protocols
+
+      - name: Bootstrap vcpkg (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: .\vcpkg\bootstrap-vcpkg.bat
+
+      - name: Bootstrap vcpkg (Linux/macOS)
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          chmod +x ./vcpkg/bootstrap-vcpkg.sh
+          ./vcpkg/bootstrap-vcpkg.sh
+
+      - name: Install vcpkg dependencies
+        shell: bash
+        run: ./vcpkg/vcpkg install --triplet=${{ matrix.triplet }}
+
+      - name: Configure CMake
+        run: cmake --preset ${{ matrix.configurePreset }}
+
+      - name: Build
+        run: cmake --build --preset ${{ matrix.buildPreset }}
+
+      - name: Run CTest (if any tests exist)
+        shell: bash
+        run: |
+          if ctest --test-dir out/build/${{ matrix.configurePreset }} -N | grep -q "Total Tests: 0"; then
+            echo "No tests registered; skipping CTest execution."
+          else
+            ctest --test-dir out/build/${{ matrix.configurePreset }} --build-config Debug --output-on-failure
+          fi
+
+      - name: Validate build outputs (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $exe = Get-ChildItem -Path out/build -Filter VulkanGFX.exe -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
+          if (-not $exe) {
+            Write-Error "VulkanGFX.exe not found under out/build"
+            exit 1
+          }
+          Write-Host "Found executable: $($exe.FullName)"
+
+      - name: Validate build outputs (Linux)
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          exe="out/build/${{ matrix.configurePreset }}/VulkanGFX"
+          if [[ ! -x "$exe" ]]; then
+            echo "Expected executable not found: $exe"
+            find out/build -maxdepth 5 -type f -name "*VulkanGFX*" -print || true
+            exit 1
+          fi
+          echo "Found executable: $exe"
+
+      - name: Validate build outputs (macOS)
+        if: runner.os == 'macOS'
+        shell: bash
+        run: |
+          app_bin="out/build/${{ matrix.configurePreset }}/Debug/VulkanGFX.app/Contents/MacOS/VulkanGFX"
+          if [[ ! -x "$app_bin" ]]; then
+            echo "Expected app binary not found: $app_bin"
+            find out/build -maxdepth 6 -type f -name "*VulkanGFX*" -print || true
+            exit 1
+          fi
+          echo "Found app binary: $app_bin"

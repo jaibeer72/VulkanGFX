@@ -50,7 +50,11 @@ void VulkanRenderer::createInstance() {
     const char** glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
 
     if (!glfwExtensions) {
+#if __APPLE__
+        throw std::runtime_error("glfwGetRequiredInstanceExtensions failed! Vulkan might not be available. On macOS, ensure the Vulkan SDK is installed and the VK_ICD_FILENAMES environment variable is set.");
+#else
         throw std::runtime_error("glfwGetRequiredInstanceExtensions failed! Vulkan might not be available.");
+#endif
     }
 
     std::cout << "GLFW required extensions (" << glfwExtensionCount << "):" << std::endl;

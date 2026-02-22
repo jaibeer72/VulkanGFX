@@ -91,6 +91,14 @@ bash vcpkg/bootstrap-vcpkg.sh
 brew install cmake ninja pkg-config
 ```
 
+**Optional Vulkan runtime helpers (recommended for local debugging):**
+```bash
+brew install vulkan-tools
+```
+
+- `vulkan-loader` is **not required** for this project build, because Vulkan is provided through `vcpkg` (`find_package(Vulkan REQUIRED)`).
+- `vulkan-tools` provides the mock ICD JSON on macOS, which is useful if your local Vulkan runtime setup is incomplete.
+
 **Supported Generators:**
 - `osx-xcode` - Xcode project generation
 
