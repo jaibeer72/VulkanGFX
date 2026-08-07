@@ -163,3 +163,6 @@ Temporary Items
 
 # Custome vcpkg to ignore
 vcpkg_installed/
+
+#ignore local learning material 
+*/9781803246529.pdf

@@ -11,6 +11,9 @@
 #include "Input/InputManager.hpp"
 
 #if __APPLE__
+// an overkill happend here i actually run the brew to get the icd files to make it easier for a start-up project
+// I don't remember why i went this overkill but cause i am not actually dealing with noobs in my proejct but it happend
+// and i am sorry or you're welcome if this is your intro to a Vulkan project
 static void ConfigureMacOSVulkanIcd() {
     const char* existing = std::getenv("VK_ICD_FILENAMES");
     if (existing && *existing) {
@@ -40,7 +43,7 @@ static void ConfigureMacOSVulkanIcd() {
 int main() {
     try {
 #if __APPLE__
-        ConfigureMacOSVulkanIcd();
+          ConfigureMacOSVulkanIcd();
 #endif
 
         // Create and initialize the window (owner of GLFW window handle)

@@ -21,7 +21,7 @@
         {
             "name": "VulkanGFX",
             "description": "",
-            "displayName": "",
+            "displayName": "VulkanGFX",
             "inherits": [
                 "TestCmake"
             ]

@@ -11,7 +11,7 @@
 #include <stdio.h>
 
 class IModuleBaseInterface {
-protected:
+public:
     virtual void InitializeModule() = 0;
     virtual void UpdateModule() = 0;
     virtual void CleanUpModule() = 0;

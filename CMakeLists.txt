@@ -9,6 +9,7 @@ find_package(glm CONFIG REQUIRED)
 find_package(glfw3 CONFIG REQUIRED)
 find_package(Vulkan REQUIRED)
 find_package(vk-bootstrap CONFIG REQUIRED)
+find_package(glad CONFIG REQUIRED)
 
 file(GLOB_RECURSE SOURCES "Source/*.cpp" "Source/*.h" "Source/*.hpp")
 # Exclude example sources from the main build; examples are separate targets
@@ -17,7 +18,7 @@ list(FILTER SOURCES EXCLUDE REGEX ".*/Source/Examples/.*")
 add_executable(VulkanGFX ${SOURCES})
 
 # Link libraries
-target_link_libraries(VulkanGFX PRIVATE glm::glm glfw Vulkan::Vulkan vk-bootstrap::vk-bootstrap)
+target_link_libraries(VulkanGFX PRIVATE glm::glm glfw Vulkan::Vulkan vk-bootstrap::vk-bootstrap glad::glad)
 target_include_directories(VulkanGFX PUBLIC include src/include lib/include)
 
 # Mac Bundle setting (helps with Window focus)
@@ -29,7 +30,7 @@ endif()
 option(BUILD_VKB_EXAMPLE "Build vk-bootstrap GLFW example" ON)
 if (BUILD_VKB_EXAMPLE)
     add_executable(vk_bootstrap_example Source/Examples/vk_bootstrap_example.cpp)
-    target_link_libraries(vk_bootstrap_example PRIVATE glm::glm glfw Vulkan::Vulkan vk-bootstrap::vk-bootstrap)
+    target_link_libraries(vk_bootstrap_example PRIVATE glm::glm glfw Vulkan::Vulkan vk-bootstrap::vk-bootstrap glad::glad)
     if(UNIX)
         target_link_libraries(vk_bootstrap_example PRIVATE ${CMAKE_DL_LIBS})
     endif()

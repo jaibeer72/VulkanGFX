@@ -12,6 +12,7 @@
       "name": "vulkan-headers",
       "platform": "linux"
     },
-    "vk-bootstrap"
+    "vk-bootstrap",
+    "glad"
   ]
 }
