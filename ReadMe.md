@@ -4,6 +4,10 @@
 [![Linux](https://img.shields.io/github/actions/workflow/status/jaibeer72/VulkanGFX/ci.yml?branch=main&label=Linux)](https://github.com/jaibeer72/VulkanGFX/actions/workflows/ci.yml)
 [![macOS](https://img.shields.io/github/actions/workflow/status/jaibeer72/VulkanGFX/ci.yml?branch=main&label=macOS)](https://github.com/jaibeer72/VulkanGFX/actions/workflows/ci.yml)
 
+## current build matrix is in a single job
+[![Build Status](https://img.shields.io/github/actions/workflow/status/jaibeer72/VulkanGFX/ci.yml?branch=main)](https://github.com/jaibeer72/VulkanGFX/actions/workflows/ci.yml)
+
+
 A cross-platform, Vulkan-based modular graphics engine.
 
 ## Goals
